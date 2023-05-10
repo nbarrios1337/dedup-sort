@@ -1,5 +1,7 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+/// dedup_sort built with functionality available from std
+pub fn std_dedup_sort<T: Ord>(v: &mut Vec<T>) {
+    v.sort();
+    v.dedup();
 }
 
 #[cfg(test)]
@@ -8,7 +10,8 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        let mut v = [3, 2, 2, 1].to_vec();
+        std_dedup_sort(&mut v);
+        assert_eq!(v, [1, 2, 3])
     }
 }
